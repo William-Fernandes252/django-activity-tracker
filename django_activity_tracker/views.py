@@ -2,12 +2,9 @@
 
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
-from typing import Iterable
-
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
-from rest_framework import generics, mixins, pagination, viewsets
+from rest_framework import generics, mixins, viewsets
 from rest_framework.request import HttpRequest
 from rest_framework.response import Response
 
@@ -22,16 +19,29 @@ class ActivityAwareAPIView(generics.GenericAPIView):
     def get_action_type(self, request: HttpRequest) -> models.ActivityLogType | None:
         """Gets the activity type to be logged for the users request.
 
-        Its receives the request instance (`HttpRequest` object) and should return either the action type object to be registered, or `None`, if the user action should not be registered.
+        Its receives the request instance (`HttpRequest` object) and should return
+        either the action type object to be registered, or `None`, if the user action
+        should not be registered.
 
-        You could use `ActivityType.objects.get_or_create(name=f"{request.method} {request.path}", label=f"{request.method.tolower()}")[0]`, for example, in order to create the action type if it doesn't exist,
+        You could use
+
+
+        ```
+        return ActivityType.objects.get_or_create(
+            name=f"{request.method} {request.path}",
+            label=f"{request.method.tolower()}"
+        )[0]
+        ```
+
+        for example, in order to create the action type if it doesn't exist,
         or use the viewset action name.
 
         Args:
             request (HttpRequest): _description_
 
         Returns:
-            models.ActivityType | None: The action type to be logged, or None, if the user action should not be registered.
+            models.ActivityType | None: The action type to be logged, or None,
+            if the user action should not be registered.
         """
         return None
 
@@ -85,8 +95,7 @@ class ActivityAwareAPIView(generics.GenericAPIView):
         return models.ActivityLog.objects.create(**data)
 
     def finalize_response(self, request, *args, **kwargs):
-        f"""{super().finalize_response.__doc__}"""
-
+        """Returns the final response object."""
         response = super().finalize_response(request, *args, **kwargs)
         self._persist_log_entry(request, response)  # type: ignore
         return response
@@ -101,10 +110,10 @@ class ActivityAwareModelViewSet(
     viewsets.ViewSetMixin,
     ActivityAwareAPIView,
 ):
-    """
-    Generic ViewSet to register logs of users interations with a resource in the database.
+    """Generic ViewSet to register logs of users interations with a resource.
 
-    It extends the `ViewSetMixin` and `ActivityAwareAPIView`, and includes basic CRUD operations.
+    It extends the `ViewSetMixin` and `ActivityAwareAPIView`, and includes
+    basic CRUD operations.
     """
 
     pass
@@ -113,7 +122,8 @@ class ActivityAwareModelViewSet(
 class ActivityLogViewSet(viewsets.ReadOnlyModelViewSet):
     """A basic viewset to list all user actions stored in the database.
 
-    You may want to restrict who can access the actions of the users of your application.
+    You may want to restrict who can access the actions of the users
+    of your application.
     """
 
     queryset = models.ActivityLog.objects.all()

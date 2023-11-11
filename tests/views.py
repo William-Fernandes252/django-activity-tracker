@@ -16,7 +16,7 @@ class ItemsViewSetWithGetActionTypeImpl(ItemsBaseViewSet):
     """Test viewset."""
 
     def get_action_type(self, request: WSGIRequest):
-        f"""{super().get_action_type.__doc__}"""
+        """Implements a test version of the `get_action_type` method."""
         return activity_models.ActivityLogType.objects.get_or_create(
             name=request.method, label="test"
         )[0]
