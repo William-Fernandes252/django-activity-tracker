@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "django-activity-tracker"
-version = "0.1.0"
+version = "1.0.0"
 homepage = "https://github.com/William-Fernandes252/django-activity-tracker"
 description = "A reusable Django application to track user actions through the database.."
 authors = ["William Fernandes Dias <william.winchester1967@gmail.com>"]
