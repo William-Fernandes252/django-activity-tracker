@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://William-Fernandes252.github.io/django-activity-tracker/</loc>
+         <lastmod>2023-11-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://William-Fernandes252.github.io/django-activity-tracker/api/</loc>
+         <lastmod>2023-11-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://William-Fernandes252.github.io/django-activity-tracker/changelog/</loc>
+         <lastmod>2023-11-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://William-Fernandes252.github.io/django-activity-tracker/contributing/</loc>
+         <lastmod>2023-11-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://William-Fernandes252.github.io/django-activity-tracker/installation/</loc>
+         <lastmod>2023-11-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://William-Fernandes252.github.io/django-activity-tracker/usage/</loc>
+         <lastmod>2023-11-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>
