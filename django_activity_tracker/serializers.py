@@ -38,7 +38,7 @@ class AdminOnlyFieldsSerializerMixin:
                 "admin_only", getattr(self.Meta, "admin_only", [])  # type: ignore
             )
         )
-        super().__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)  # type: ignore
 
         context = kwargs.get("context")
         if not context:
